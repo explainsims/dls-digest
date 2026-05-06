@@ -385,6 +385,15 @@
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.11/dist/purify.min.js"></script>
 <script>
+  /* === Storage persistence (ask Chrome not to evict IDB) === */
+  (function () {
+    if (navigator.storage && typeof navigator.storage.persist === 'function') {
+      navigator.storage.persisted().then(function (already) {
+        if (!already) navigator.storage.persist();
+      }).catch(function () {});
+    }
+  })();
+
   /* === Theme toggle (matches the rest of the estate) === */
   (function () {
     var root = document.documentElement;
