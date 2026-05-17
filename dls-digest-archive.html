@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DLS Digest Archive — Signals in the noise</title>
+<meta name="description" content="Archive of public DLS Digest briefings and deep dives.">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  * { box-sizing: border-box; }
+
+  :root {
+    --bg: #ede2c2;
+    --card: #f6efd6;
+    --border: #c9b88a;
+    --rule: #a3771e;
+    --text: #1d1812;
+    --muted: #6a5a3e;
+    --accent: #a3771e;
+    --accent-soft: #ead7a8;
+
+    --serif: 'Iowan Old Style', 'Palatino', 'Charter', 'Georgia', serif;
+    --sans:  -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    --mono:  'SF Mono', ui-monospace, Menlo, Monaco, Consolas, monospace;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0e1411;
+    --card: #161e19;
+    --border: #2a3530;
+    --rule: #d6a838;
+    --text: #e9dcc0;
+    --muted: #998b6e;
+    --accent: #d6a838;
+    --accent-soft: #2a2418;
+  }
+
+  html { transition: background-color 0.3s ease; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem 4rem;
+  }
+
+  a { color: var(--accent); }
+  a:hover { opacity: 0.8; }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.875em;
+    background: var(--accent-soft);
+    padding: 1px 7px;
+    border-radius: 4px;
+    color: var(--accent);
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* ===== Theme toggle ===== */
+  .theme-toggle {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    font-family: var(--sans);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+  }
+  .theme-toggle:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    transform: scale(1.06);
+  }
+
+  /* ===== Masthead ===== */
+  .masthead {
+    text-align: center;
+    padding: 1rem 0 2.5rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 2rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .masthead-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 0.95rem;
+    transition: color 0.3s ease;
+  }
+
+  .masthead-mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 3rem;
+    font-weight: 500;
+    margin: 0 0 0.7rem 0;
+    line-height: 1.1;
+    letter-spacing: -0.012em;
+    color: var(--accent);
+    transition: color 0.3s ease;
+  }
+
+  .masthead-deck {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--text);
+    margin: 1.25rem auto 0;
+    max-width: 640px;
+    line-height: 1.5;
+    transition: color 0.3s ease;
+  }
+
+  /* ===== Sections ===== */
+  section { margin-top: 3.5rem; }
+
+  .section-rule {
+    width: 36px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  section h2 {
+    font-family: var(--serif);
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--text);
+    transition: color 0.3s ease;
+  }
+
+  .section-deck {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+    margin: 0 0 1.5rem;
+    transition: color 0.3s ease;
+  }
+
+  /* ===== Card ===== */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .card.empty {
+    color: var(--muted);
+    font-style: italic;
+  }
+  .card.empty strong {
+    font-style: normal;
+    color: var(--text);
+  }
+  .card p { margin: 0; }
+  .card p + p { margin-top: 0.5rem; }
+
+  /* ===== Brief (Latest Brief) ===== */
+  .brief-card {
+    position: relative;
+    padding-top: 1.85rem;
+  }
+
+  .brief-tag {
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    transform: translateY(-50%);
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .brief-headline {
+    font-family: var(--serif);
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin: 0 0 0.65rem 0;
+    line-height: 1.3;
+    color: var(--text);
+  }
+
+  .brief-body { margin: 0 0 0.8rem 0; color: var(--text); }
+  .brief-meta { margin: 0; color: var(--muted); font-size: 0.9rem; font-style: italic; }
+  .brief-divider { height: 1px; background: var(--border); margin: 1.5rem 0; transition: background-color 0.3s ease; }
+
+  .brief-subhead {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin: 1.3rem 0 0.75rem;
+  }
+
+  .brief-list { list-style: none; padding: 0; margin: 0 0 0.5rem 0; }
+  .brief-list > li {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.55;
+    transition: border-color 0.3s ease;
+  }
+  .brief-list > li:last-child { border-bottom: none; }
+  .brief-list > li a { font-size: 0.85em; text-decoration: none; border-bottom: 1px dotted var(--accent); }
+
+  .brief-radar { margin: 0; padding-left: 1.25rem; color: var(--text); }
+  .brief-radar li { margin-bottom: 0.5rem; line-height: 1.55; }
+  .brief-radar li::marker { color: var(--accent); }
+
+  /* ===== Archive cards ===== */
+  .archive-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.85rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .archive-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .archive-date {
+    font-family: var(--serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text);
+  }
+  .archive-date em { font-weight: 400; color: var(--muted); font-size: 0.9em; }
+
+  .archive-toggle {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: background-color 0.18s, color 0.18s, border-color 0.18s;
+  }
+  .archive-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+  .archive-ledes {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.4rem 1rem;
+    font-size: 0.93rem;
+    line-height: 1.5;
+  }
+  .archive-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    padding-top: 0.18rem;
+    white-space: nowrap;
+  }
+  .archive-lede-text { color: var(--text); }
+
+  .archive-full {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .archive-full[hidden] { display: none; }
+
+  /* ===== Footer ===== */
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+  footer .signoff {
+    font-family: var(--serif);
+    font-style: italic;
+    margin-top: 0.4rem;
+    font-size: 0.95rem;
+    color: var(--text);
+    letter-spacing: 0;
+    transition: color 0.3s ease;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 600px) {
+    .container { padding: 2rem 1.25rem 3rem; }
+    .masthead-mark { font-size: 2rem; }
+    .masthead-deck { font-size: 1.05rem; }
+    section h2 { font-size: 1.5rem; }
+    .theme-toggle { top: 0.75rem; right: 0.75rem; width: 38px; height: 38px; }
+    .archive-ledes { grid-template-columns: 1fr; gap: 0.15rem 0; }
+    .archive-label { padding-top: 0.4rem; }
+    .archive-card-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+<button class="theme-toggle" type="button" aria-label="Toggle dark mode" id="themeToggle">☾</button>
+<main class="container">
+  <header class="masthead">
+    <div class="masthead-eyebrow">THE DLS DIGEST</div>
+    <h1 class="masthead-mark">Archive</h1>
+    <p class="masthead-deck">Briefings and longer reads, grouped by month and week.</p>
+    <p><a href="index.html">← Latest Digest</a></p>
+  </header>
+
+  <section>
+    <div class="section-rule"></div>
+    <h2>All public filings</h2>
+    <p class="section-deck">Generated from publication-ready sources only.</p>
+    <details class="archive-card" open>
+      <summary><strong>May 2026</strong></summary>
+      <details class="archive-card" open>
+        <summary><strong>Week of 11 May 2026</strong> · 6 items</summary>
+        <div style="margin-top:1rem;"><article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">17 May 2026 · <em>Week ending Sunday, 17 May 2026</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">weekly</span>
+        <span class="archive-lede-text">The week began with the Canvas breach still on the clock and ended with a cleaner, odder shape: Instructure paid ShinyHunters, Congress asked for a briefing, class actions split across Utah and New York, and Instructure…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-17-weekly.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">15 May 2026 · <em>Toddle's PYP Refresh webinar is not today. Toddle's own page now lists it for Saturday, 16 May 2026, and the…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">Toddle's PYP Refresh webinar is not today. Toddle's own page now lists it for Saturday, 16 May 2026, and the framing is unambiguously AI-product-shaped: &quot;PYP Refresh: How Toddle AI Supports the 2025 Updates.&quot;</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-15-0745-brief.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">14 May 2026 · <em>Self-correction from yesterday's brief: there is no 8-K coming. Instructure has been a private company since…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">Self-correction from yesterday's brief: there is no 8-K coming. Instructure has been a private company since November 2024 — the mid-June EDGAR watch in the Wednesday and Tuesday briefs was wrong. The disclosure questio…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-14-0738-brief.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">13 May 2026 · <em>Instructure paid the ransom. ShinyHunters sent shred logs. Congress opened an investigation the same day. The…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">Instructure paid the ransom. ShinyHunters sent shred logs. Congress opened an investigation the same day. The leak deadline didn't pass quietly — it was bought.</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-13-0730-brief.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">12 May 2026 · <em>The KKR class action dropped Friday. Aaron Hinds, a University of Denver alum, filed in SDNY on Friday, 8 May…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">The KKR class action dropped Friday. Aaron Hinds, a University of Denver alum, filed in SDNY on Friday, 8 May 2026, asserting negligence against KKR and Instructure — &quot;KKR failed to honor its responsibility to protect p…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-12-0730-brief.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">11 May 2026 · <em>Tomorrow is the leak deadline, and the class-action bar has already moved. Three plaintiffs' firms have opene…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">Tomorrow is the leak deadline, and the class-action bar has already moved. Three plaintiffs' firms have opened public investigations into the Canvas breach since Friday; one of them is on record that no complaint had be…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-11-0746-brief.md">Open source markdown →</a></p>
+    </article></div>
+      </details>
+<details class="archive-card" >
+        <summary><strong>Week of 4 May 2026</strong> · 10 items</summary>
+        <div style="margin-top:1rem;"><article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">10 May 2026 · <em>Week ending Sunday, 10 May 2026</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">weekly</span>
+        <span class="archive-lede-text">The week's centre of gravity was Instructure. Three breaches in eight months — the third after the public crisis-response patches, which is the worst possible signal a vendor can send mid-contract-cycle. Leak deadline s…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-10-weekly.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">8 May 2026 · <em>Deep dive: Scoping the digital-fluency framework landscape — what's out there, what holds up, and which two o…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">deep dive</span>
+        <span class="archive-lede-text">&gt; Lede: The &quot;digital natives&quot; line — that students born after 1995 absorb digital fluency by osmosis — has been falsified for a decade in the literature (PMC review) and is now collapsing in a second way: the AI-tool ga…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=deep-dives%2F2026-05-08-1203-scoping-digital-fluency-frameworks.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">8 May 2026 · <em>Deep dive: Instructure's third breach in eight months — the PE-precedent angle, the remediation-cycle break,…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">deep dive</span>
+        <span class="archive-lede-text">&gt; Lede: Three breaches in eight months. The first one Instructure publicly disclosed in late September 2025 and contained inside a week. The second one ShinyHunters claimed on 3 May 2026 — 275M records, 8,809 institutio…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=deep-dives%2F2026-05-08-0930-deepdive-instructure-third-breach.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">8 May 2026 · <em>Instructure was breached again on 7 May. Canvas went dark across major institutions, school login pages were…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">Instructure was breached again on 7 May. Canvas went dark across major institutions, school login pages were defaced with the ransom message, and the deadline shifted to 12 May — what Wednesday's coverage called a procu…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-08-0735-brief.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">7 May 2026 · <em>ShinyHunters' ransom window on Instructure expires Friday 8 May. If nothing changes, the group has said it wi…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">ShinyHunters' ransom window on Instructure expires Friday 8 May. If nothing changes, the group has said it will release the haul: names, school email addresses, student ID numbers, and — the part that travels furthest —…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-07-0746-brief.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">6 May 2026 · <em>Deep dive: Toddle — IB-native LMS, dual-cloud AI, India-headquartered</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">deep dive</span>
+        <span class="archive-lede-text">&gt; Lede: Toddle is the IB-native LMS that has spent the last eighteen months trying to convince schools it's also a serious AI platform — five Demo Days in fifteen months, AI grading on by default in 2025, conversational…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=deep-dives%2F2026-05-06-1345-deepdive-toddle-lms.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">6 May 2026 · <em>Deep dive: Canvas multi-vendor architecture — OpenAI / Bedrock / Anthropic-LTI</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">deep dive</span>
+        <span class="archive-lede-text">&gt; Lede: Canvas in 2026 is the working example of what &quot;build for swap, not for loyalty&quot; looks like at LMS scale — three AI providers stitched into one platform along clean functional seams, with the catch that the same…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=deep-dives%2F2026-05-06-1015-deepdive-canvas-multi-vendor.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">6 May 2026 · <em>The NYC DOE feedback window was supposed to close quietly on Friday 8 May with refinements baked into the Jun…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">The NYC DOE feedback window was supposed to close quietly on Friday 8 May with refinements baked into the June Playbook. Instead, two things happened in the 48 hours before that deadline.</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-06-0745-brief.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">5 May 2026 · <em>Harvard's Faculty of Arts and Sciences confirmed last week it is phasing out ChatGPT Edu after June 2026 and…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">Harvard's Faculty of Arts and Sciences confirmed last week it is phasing out ChatGPT Edu after June 2026 and adding Anthropic's Claude Code to its supported toolkit. Gemini remains the primary FAS service for students;…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-05-0745-brief.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">4 May 2026 · <em>The false-positive crisis has crossed into mainstream policy territory. A 2026 study puts mean false-positive…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">The false-positive crisis has crossed into mainstream policy territory. A 2026 study puts mean false-positive rates at 61% for TOEFL essays by Chinese students versus 5% for US-native writers, and at least 50 universiti…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-04-0745-brief.md">Open source markdown →</a></p>
+    </article></div>
+      </details>
+<details class="archive-card" >
+        <summary><strong>Week of 27 April 2026</strong> · 2 items</summary>
+        <div style="margin-top:1rem;"><article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">3 May 2026 · <em>Deep dive: NYC DOE AI Guidance</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">deep dive</span>
+        <span class="archive-lede-text">&gt; Lede: NYC's preliminary AI guidance offers a usable traffic-light scaffold but ducks the hard questions on student use, vendor vetting, and instructional efficacy.</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=deep-dives%2F2026-05-03-1940-deepdive-nyc-doe.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">3 May 2026 · <em>Boston Public Schools is becoming the first major-city US district to require AI literacy for graduation, wit…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">Boston Public Schools is becoming the first major-city US district to require AI literacy for graduation, with mandatory programming launching across all BPS high schools in September 2026. That's three months before in…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-03-1430-first-brief.md">Open source markdown →</a></p>
+    </article></div>
+      </details>
+    </details>
+  </section>
+
+  <footer>
+    <div>Curated by Lennox Meldrum, Digital Learning Specialist, SSIS.</div>
+  </footer>
+</main>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var KEY = 'dls-digest.theme.v1';
+    var btn = document.getElementById('themeToggle');
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) {}
+    apply(stored || ((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'));
+    btn.addEventListener('click', function () {
+      apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+    function apply(mode) {
+      if (mode === 'dark') { root.setAttribute('data-theme', 'dark'); btn.textContent = '☀'; }
+      else { root.removeAttribute('data-theme'); btn.textContent = '☾'; }
+      try { localStorage.setItem(KEY, mode); } catch (e) {}
+    }
+  })();
+</script>
+</body>
+</html>
