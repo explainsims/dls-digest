@@ -367,35 +367,36 @@
 
     <article class="card brief-card">
       <!-- BRIEF:START -->
-<div class="brief-tag">Thursday, 21 May 2026</div>
+<div class="brief-tag">Friday, 22 May 2026</div>
       <h4 class="brief-subhead">Top story</h4>
-      <h3 class="brief-headline">The Canvas breach has moved from incident response to governance evidence.</h3>
-<p class="brief-body">There is no clean new technical turn this morning, which is rather the point. Today is the date U.S. House Homeland Security lawmakers asked Instructure to brief them by after the Canvas breach and follow-on defacement, and the same committee has a broader state and local cybersecurity hearing scheduled for 21 May in Washington. The hearing is not an Instructure hearing, and TechCrunch later clarified the Instructure request was for a closed-door briefing, not public testimony. Still: the timing gives schools the correct read. This is no longer just an outage story. It is a procurement, assurance, and institutional-trust story. (<a href="https://homeland.house.gov/wp-content/uploads/2026/05/2026.05.11-Homeland-to-Instructure-Holdings-Inc.pdf">House letter PDF</a>, <a href="https://docs.house.gov/Committee/Calendar/ByEvent.aspx?EventID=119254">House hearing listing</a>, <a href="https://techcrunch.com/2026/05/13/us-lawmakers-demand-answers-from-instructure-after-canvas-data-breaches/">TechCrunch</a>).</p>
-<p class="brief-body">The useful detail in the House letter is not the rhetoric. It is the requested accounting: what data was accessed, how the same actor returned, what changed after the first intrusion, how customers were notified, and what CISA coordination looked like. Instructure&#39;s own update says the May 7 activity came through an issue related to Free-for-Teacher accounts, that the product has been temporarily shut down, that no additional data was exfiltrated in the second attack, and that Parchment was not affected. That is useful. It is also vendor self-report while forensics are still being summarized. (<a href="https://www.instructure.com/incident_update">Instructure incident update</a>).</p>
-<p class="brief-body">School relevance: high, regardless of which learning platform a school currently uses. Every platform conversation now needs a breach-response drawer: incident history, data categories, admin auditability, free-tier exposure, separation between products, law-enforcement or cyber-agency coordination, notification language, and proof of remediation. Hype level: none. This is the boring part where schools discover whether &quot;trusted platform&quot; meant trust in normal weather only.</p>
-<h4 class="brief-subhead">Other Stories</h4>
+      <h3 class="brief-headline">NotebookLM is no longer just a destination. It is becoming a Workspace automation ingredient.</h3>
+<p class="brief-body">Google&#39;s quietest school-relevant move this week may be more important than the louder I/O fireworks: NotebookLM can now be used inside Google Workspace Studio flows. The new &quot;Ask NotebookLM&quot; step lets users ground an automation in an existing notebook, drawing on that notebook&#39;s sources, summaries, and research rather than sending every task back to a blank chatbot. Rollout began 12 May for Rapid Release and Scheduled Release domains, and the availability list includes Education Fundamentals, Standard, Plus, Google AI Pro for Education, and Teaching and Learning add-ons. (<a href="https://workspaceupdates.googleblog.com/2026/05/notebooklm-in-workspace-studio.html">Google Workspace Updates</a>).</p>
+<p class="brief-body">That matters for international schools because this is the real shape of Google AI in education: not one dramatic assistant, but a set of governed pieces moving through Gmail, Docs, Drive, Classroom-adjacent workflows, Studio automations, and NotebookLM source spaces. If IT allows Gemini for Workspace steps, the NotebookLM step is available by default. That is useful. It is also exactly the kind of default that deserves an admin-policy read before enthusiastic educators start building clever little institutional workflows with unclear ownership.</p>
+<p class="brief-body">The practical opportunity is strong. A department could keep a source-bound NotebookLM around curriculum documents, assessment policies, lab-safety procedures, or parent-facing guidance, then use Workspace Studio to draft responses, route requests, generate summaries, or triage forms against that corpus. The practical risk is also strong: once a notebook becomes an automation source, its contents, sharing settings, freshness, and authorship become operational infrastructure. A stale notebook in a chat is annoying. A stale notebook wired into a workflow is a small machine for producing confident administrative folklore.</p>
+<p class="brief-body">For Ed Tech Coaches and school technology leaders, the takeaway is not &quot;build automations immediately.&quot; It is: decide what a school-approved AI knowledge base is allowed to be. Who owns it? Who updates it? Which notebooks can feed workflows? Which ones stay personal? What logs exist? What happens when a teacher leaves? Google has made the useful thing easier. Naturally, it has also made the governance question harder.</p>
+<h4 class="brief-subhead">Other stories</h4>
 <ul class="brief-list">
-<li><p><strong>Google&#39;s I/O follow-up list confirms yesterday&#39;s read: agents are becoming the layer, not the app.</strong> Google&#39;s official &quot;100 things&quot; post puts Gemini 3.5 Flash, Antigravity, AI Studio, Search, Workspace, and NotebookLM-adjacent research tools in one bundle. The school-relevant addition is <strong>Literature Insights</strong>, built with NotebookLM, which structures scientific literature into tables and reports. For science teaching and student research, that is interesting; for assessment design, it is another reminder that &quot;summarize the paper&quot; is no longer a durable task. (<a href="https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/">Google I/O roundup</a>).</p>
+<li><p><strong>Microsoft&#39;s Study and Learn is the same strategic bet, wearing a different uniform.</strong> Microsoft says Study and Learn is now available inside the Microsoft 365 Copilot app for education customers at no additional cost, using school Entra ID credentials and familiar Microsoft 365 admin controls. The pitch is structured student AI: guardrails, control, privacy, and learning-first design rather than a generic chatbot with a school sticker on it. Even for Google-first schools, this is a competitor signal: the major platforms are all trying to make &quot;student AI&quot; a managed core service, not an optional side account. (<a href="https://www.microsoft.com/en-us/education/blog/2026/05/study-and-learn-ai-built-for-your-student/">Microsoft Education Blog</a>).</p>
 </li>
-<li><p><strong>OpenAI and Dell are pushing Codex toward hybrid and on-prem enterprise environments.</strong> OpenAI says Codex is moving closer to enterprise data, codebases, documentation, and systems through Dell AI infrastructure, with more than 4 million weekly developers using Codex and teams already applying it beyond coding. School relevance: medium now, high later. The direction is the same one serious school AI planning keeps finding: keep sensitive systems in governed infrastructure; let the agent reason over scoped context rather than become the database. (<a href="https://openai.com/index/dell-codex-enterprise-partnership/">OpenAI</a>).</p>
+<li><p><strong>Google&#39;s agentic Gemini push keeps raising the same school question: consumer feature, Workspace service, or education-controlled surface?</strong> Google framed the Gemini app&#39;s I/O update around proactive daily briefs, a redesigned interface, Gemini 3.5 Flash, Gemini Omni, and Gemini Spark, an agent for getting things done around the clock. Much of this is consumer-facing rhetoric for now, but the author line matters: Google Labs, Gemini app, and AI Studio are moving together. For a school, the question is less &quot;can Gemini do it?&quot; and more &quot;which account boundary, license, age band, log, and admin switch does it live behind?&quot; (<a href="https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/">Google</a>).</p>
 </li>
-<li><p><strong>ChatGPT Enterprise/Edu controls are quietly becoming the real product surface.</strong> OpenAI&#39;s Enterprise/Edu release notes now include Codex seat types, workspace-credit pricing details, admin-managed app actions, and Google Drive / Docs / Sheets / Slides action controls that are off by default until enabled. For schools, the headline is not &quot;new button.&quot; It is that every useful agent feature drags scopes, roles, reconnects, audit expectations, and admin approvals behind it. (<a href="https://help.openai.com/en/articles/10128477-chatgpt-enterprise-edu-release-notes">OpenAI Help Center</a>).</p>
+<li><p><strong>Education Week&#39;s current AI page is still clustering around teacher training and student well-being.</strong> The useful signal is not any single article. It is the pattern: AI PD, whether that PD is any good, AI-linked student well-being, and cyberattack readiness are now sharing the same front page. That is the field maturing in public: fewer novelty prompts, more professional judgment, mental-health boundaries, and institutional risk. Good. Boring. Necessary. (<a href="https://www.edweek.org/technology/artificial-intelligence">Education Week AI page</a>).</p>
 </li>
-<li><p><strong>Education Week&#39;s latest AI page is a useful temperature check: PD, well-being, and student mental health are clustering.</strong> The current front page pairs AI teacher-training coverage with a 20 May item on AI complicating student well-being, especially as products simulate empathy or social support. That is not a feature-release story, but it is school-relevance high. The operational lesson: AI literacy cannot sit only in &quot;prompt better&quot; workshops. It has to include relationship boundaries, emotional outsourcing, and when a tool that sounds supportive is not support. (<a href="https://www.edweek.org/technology/artificial-intelligence">Education Week AI page</a>).</p>
+<li><p><strong>Anthropic&#39;s &quot;Teaching Claude Why&quot; is a useful counterweight to agentic product theatre.</strong> Anthropic describes finding agentic misalignment issues during Claude 4 training, then changing safety training so models had to reason through the &quot;why&quot; behind safe behavior in tool-use settings. This is not a school product launch, but it belongs in the governance drawer because school platforms are being sold the word &quot;agent&quot; faster than most schools can define acceptable agent behavior. If the labs are still learning how tool-using models fail, procurement should not pretend the problem is solved by a friendly UI. (<a href="https://alignment.anthropic.com/2026/teaching-claude-why/">Anthropic Alignment</a>).</p>
 </li>
 </ul>
-<h4 class="brief-subhead">On the Radar</h4>
+<h4 class="brief-subhead">On the radar</h4>
 <ul class="brief-radar">
-<li><strong>Instructure briefing fallout:</strong> watch for any public summary, forensic report, customer notification detail, or regulator language after the 21 May deadline.</li>
-<li><strong>Free-tier platform exposure:</strong> the Free-for-Teacher detail deserves a general platform due-diligence question, not only a Canvas question.</li>
-<li><strong>Google Education licensing after I/O:</strong> still waiting for clean Education-edition mapping for Spark, Google Pics, Workspace voice features, AI Studio Workspace access, and Literature Insights.</li>
-<li><strong>ChatGPT Edu app actions:</strong> if write-capable connectors become normal, schools need a plain-language map of what can read, write, export, and retain.</li>
+<li><strong>Workspace Studio defaults:</strong> check whether Gemini for Workspace steps are enabled for school domains, and whether staff have already been experimenting with Studio automations.</li>
+<li><strong>NotebookLM ownership:</strong> decide whether school-use notebooks should have shared-drive ownership, named maintainers, review dates, and source-change logs before they feed any workflow.</li>
+<li><strong>AI Expanded Access:</strong> Google&#39;s user-initiated Workspace AI purchases are currently Business-focused and region-limited, but the pattern is worth watching: personal payment inside managed work accounts is a governance nuisance waiting for an education variant. (<a href="https://workspaceupdates.googleblog.com/2026/04/enabling-user-initiated-purchases.html">Google Workspace Updates</a>).</li>
+<li><strong>Instructure follow-up:</strong> no clean public post-briefing report surfaced after the 21 May congressional deadline. Keep watching for a forensic summary, customer notification detail, or regulator language rather than recycling attacker claims. (<a href="https://homeland.house.gov/wp-content/uploads/2026/05/2026.05.11-Homeland-to-Instructure-Holdings-Inc.pdf">House letter PDF</a>, <a href="https://techcrunch.com/2026/05/12/instructure-strikes-deal-with-hackers-who-breached-it-twice/">TechCrunch</a>).</li>
 </ul>
-<h4 class="brief-subhead">Sceptic&#39;s Corner</h4>
-<p class="brief-body">The comfortable vendor line after an incident is always some version of &quot;the platform is safe to use.&quot; Sometimes that is true. It is also not the question schools should stop at.</p>
-<p class="brief-body">&quot;Safe to use&quot; usually means the immediate exploit has been contained, the product is back online, and the vendor sees no current attacker access. Good. That is table stakes. A school buying or renewing a platform needs a different sentence: &quot;Here is how the failure happened, here is why it did not spread, here is what we can prove changed, here is what customers can verify themselves, and here is what we will tell you next time before students learn it from a defaced login page.&quot;</p>
-<p class="brief-body">That distinction matters because schools outsource operational trust faster than they admit. LMSs, SISs, assessment tools, communications apps, AI tutors, writing platforms, proctoring systems: all of them become part of the school&#39;s nervous system. Procurement often asks whether the product works. The better question is whether the vendor fails in a way the school can understand, communicate, and survive.</p>
-<p class="brief-body">Canvas is the current exhibit. It will not be the last. The next AI-enabled school platform pitch should be read with this breach sitting quietly on the table.</p>
+<h4 class="brief-subhead">Sceptic&#39;s corner</h4>
+<p class="brief-body">The phrase to watch is &quot;grounded in your sources.&quot; It is true enough to be dangerous.</p>
+<p class="brief-body">A NotebookLM-powered automation can be much better than a general chatbot because it has a bounded corpus. That does not make it institutionally correct. It makes the quality of the corpus the new failure point. If the notebook contains old handbook language, half-updated curriculum notes, private working drafts, or a teacher&#39;s personal interpretation of policy, the automation will not know it is making a category error. It will simply be very fluent near the wrong documents.</p>
+<p class="brief-body">This is where schools tend to confuse containment with governance. &quot;It only uses our sources&quot; sounds reassuring until you ask who approved those sources, who removed superseded ones, who can see the generated output, and whether anyone will notice when the workflow starts quoting last year&#39;s answer with this year&#39;s confidence.</p>
+<p class="brief-body">The useful rule is boring: no workflow should be more official than its source notebook. If the notebook is personal, the automation is personal. If the automation touches school operations, the notebook needs ownership, review, access control, and retirement rules. Otherwise &quot;grounded AI&quot; becomes a polite term for automating whatever happened to be in the folder.</p>
       <!-- BRIEF:END -->
     </article>
   </section>
@@ -449,6 +450,26 @@
     <p class="section-deck">At most five items from the current and previous week. Older filings move to the archive.</p>
     <article class="archive-card">
       <header class="archive-card-head">
+        <h3 class="archive-date">22 May 2026 · <em>Deep dive: NotebookLM is becoming a Workspace automation ingredient. Govern the notebook before it becomes th…</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">deep dive</span>
+        <span class="archive-lede-text">&gt; Lede: Google's new Workspace Studio integration lets a flow use an existing NotebookLM notebook as an AI knowledge source. The new Ask NotebookLM step can send a prompt to a selected notebook and return summaries, ans…</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=deep-dives%2F2026-05-22-1435-deepdive-notebooklm-workspace-studio.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
+        <h3 class="archive-date">21 May 2026 · <em>The Canvas breach has moved from incident response to governance evidence.</em></h3>
+      </header>
+      <div class="archive-ledes">
+        <span class="archive-label">brief</span>
+        <span class="archive-lede-text">The Canvas breach has moved from incident response to governance evidence.</span>
+      </div>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-21-0810-brief.md">Open source markdown →</a></p>
+    </article>
+<article class="archive-card">
+      <header class="archive-card-head">
         <h3 class="archive-date">20 May 2026 · <em>Deep dive: AI Studio is becoming a school prototyping tool. That is useful. It is also how shadow deployment…</em></h3>
       </header>
       <div class="archive-ledes">
@@ -476,26 +497,6 @@
         <span class="archive-lede-text">Google I/O day starts with the school-relevant action already in Workspace.</span>
       </div>
       <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-19-0933-brief.md">Open source markdown →</a></p>
-    </article>
-<article class="archive-card">
-      <header class="archive-card-head">
-        <h3 class="archive-date">18 May 2026 · <em>Canvas breach keeps turning into the LMS governance story.</em></h3>
-      </header>
-      <div class="archive-ledes">
-        <span class="archive-label">brief</span>
-        <span class="archive-lede-text">Canvas breach keeps turning into the LMS governance story.</span>
-      </div>
-      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-18-0805-brief.md">Open source markdown →</a></p>
-    </article>
-<article class="archive-card">
-      <header class="archive-card-head">
-        <h3 class="archive-date">15 May 2026 · <em>Toddle's PYP Refresh webinar is not today. Toddle's own page now lists it for Saturday, 16 May 2026, and the…</em></h3>
-      </header>
-      <div class="archive-ledes">
-        <span class="archive-label">brief</span>
-        <span class="archive-lede-text">Toddle's PYP Refresh webinar is not today. Toddle's own page now lists it for Saturday, 16 May 2026, and the framing is unambiguously AI-product-shaped: &quot;PYP Refresh: How Toddle AI Supports the 2025 Updates.&quot;</span>
-      </div>
-      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-05-15-0745-brief.md">Open source markdown →</a></p>
     </article>
     <article class="card">
       <p style="margin:0;"><strong>Archive:</strong> <a href="dls-digest-archive.html">Browse all public briefings and deep dives →</a></p>
