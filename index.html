@@ -334,6 +334,42 @@
     transition: color 0.3s ease;
   }
 
+  /* ===== Summer break banner ===== */
+  .summer-banner {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  .summer-banner-stripes {
+    height: 14px;
+    background: repeating-linear-gradient(90deg, #d85a30 0 20px, #f2b705 20px 40px, #2f8f86 40px 60px, #ead7a8 60px 80px);
+  }
+  .summer-banner-body { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.6rem; }
+  .summer-banner-sun { flex: 0 0 auto; }
+  .summer-banner-head {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.15;
+    color: var(--accent);
+    transition: color 0.3s ease;
+  }
+  .summer-banner-sub {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+    line-height: 1.5;
+    transition: color 0.3s ease;
+  }
+  @media (max-width: 600px) {
+    .summer-banner-head { font-size: 1.25rem; }
+    .summer-banner-body { padding: 1rem 1.1rem; gap: 0.75rem; }
+  }
+
   /* ===== Responsive ===== */
   @media (max-width: 600px) {
     .container { padding: 2rem 1.25rem 3rem; }
@@ -358,6 +394,26 @@
     <h1 class="masthead-mark">Signals in the noise</h1>
     <p class="masthead-deck">A curation of what is happening in AI and Education Technology today.</p>
   </header>
+
+  <!-- ===== Summer break ===== -->
+  <div class="summer-banner" role="note" aria-label="Summer break notice">
+    <div class="summer-banner-stripes"></div>
+    <div class="summer-banner-body">
+      <svg class="summer-banner-sun" width="42" height="42" viewBox="0 0 54 54" aria-hidden="true">
+        <g stroke="#e8932b" stroke-width="3" stroke-linecap="round">
+          <line x1="27" y1="5" x2="27" y2="12"/><line x1="27" y1="42" x2="27" y2="49"/>
+          <line x1="5" y1="27" x2="12" y2="27"/><line x1="42" y1="27" x2="49" y2="27"/>
+          <line x1="12" y1="12" x2="17" y2="17"/><line x1="37" y1="37" x2="42" y2="42"/>
+          <line x1="42" y1="12" x2="37" y2="17"/><line x1="12" y1="42" x2="17" y2="37"/>
+        </g>
+        <circle cx="27" cy="27" r="12" fill="#f2b705"/>
+      </svg>
+      <div class="summer-banner-text">
+        <div class="summer-banner-head">Out for the summer</div>
+        <div class="summer-banner-sub">The Digest is closed for the season and returns in August 2026.</div>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== Latest brief ===== -->
   <section>
@@ -402,46 +458,37 @@
   <section>
     <div class="section-rule"></div>
     <h2>Latest weekly digest</h2>
-    <p class="section-deck">Filed Sunday, 7 June 2026. Sunday-paper read of the week — synthesis, not a re-read of the dailies.</p>
+    <p class="section-deck">Filed Sunday, 14 June 2026. Sunday-paper read of the week — synthesis, not a re-read of the dailies.</p>
 
     <article class="card brief-card">
-      <h3 class="brief-headline">AI policy should preserve the teacher's ability to make a valid inference from student work.</h3>
-      <div class="brief-tag">Week ending Sunday, 7 June 2026 · 1,194 words · ~5 min read</div>
+      <h3 class="brief-headline">A frontier model vanished from every classroom in 72 hours — the lesson is to build on task design, not the tool.</h3>
+      <div class="brief-tag">Week ending Sunday, 14 June 2026 · 1,540 words · ~6 min read</div>
 <h4 class="brief-subhead">The Week That Was</h4>
-<p class="brief-body">This week&#39;s product announcements kept turning into questions about institutional judgement. Google linked <a href="https://workspaceupdates.googleblog.com/2026/05/keep-track-of-student-progress-with-learning-standards-and-skills-in-Google-Classroom.html">Classroom assignments and analytics to learning goals</a>, extended Gemini and NotebookLM across LMS and Workspace workflows, and reduced the friction of maintaining source-grounded notebooks. Meanwhile, <a href="https://www.bu.edu/wheelock/news/articles/2026/new-ai-ethics-index-launches/">Boston University&#39;s developing AI Ethics Index</a> and <a href="https://www.cosn.org/cosn-news/u-s-state-of-edtech-report-examines-how-k-12-districts-are-using-technology-to-support-teaching-and-learning/">CoSN&#39;s 2026 findings</a> pointed to the work product launches tend to hide: independent evidence, procurement discipline, and enough human capacity to implement tools well.</p>
-<p class="brief-body"><strong>Friday, 5 June pickup:</strong> a new NPR/Ipsos poll sharpened the disagreement inside schools. Among 545 US K-12 teachers, 74% said AI has greater implications than previous technological changes. Fifty-nine percent said it is eroding teacher-student trust and 57% said it makes students&#39; knowledge harder to assess. At the same time, 78% want responsible AI use in the curriculum, while only 33% report a formal student-use policy (<a href="https://www.ipsos.com/en-us/teachers-concerned-about-impact-ai-students-critical-thinking">Ipsos</a>).</p>
+<p class="brief-body">The weekend handed us the story of the week, after Friday&#39;s brief had filed. <strong>On 12 June the US Commerce Department ordered Anthropic to suspend Claude Fable 5 and Mythos 5</strong> — and because the company says it cannot reliably separate foreign nationals from anyone else in real time, it pulled both models for <em>every</em> user on Earth, paying customers and its own staff included (<a href="https://www.anthropic.com/news/fable-mythos-access">Anthropic, 12 June</a>; <a href="https://www.bloomberg.com/news/articles/2026-06-13/anthropic-says-us-limits-foreign-access-to-fable-5-mythos-5">Bloomberg, 13 June</a>). Secretary Howard Lutnick&#39;s letter to Dario Amodei cited national security and an export-control directive barring access &quot;by any foreign national,&quot; reportedly triggered by a jailbreak demonstrated against Mythos 5. Fable 5 launched 9 June as the most capable model the company had shipped; three days later it was a global blackout by government fiat. Anthropic is complying but disputing — it says the vulnerability was minor, previously known, and present in rival frontier models too (<a href="https://www.washingtonpost.com/technology/2026/06/13/anthropic-shuts-down-newest-ai-model-after-us-bans-foreign-use/">Washington Post, 13 June</a>).</p>
+<p class="brief-body">The rest, briefly: Apple&#39;s WWDC turned the managed device into an enforcement surface (lockable browser, multi-app mode, harder assessment configs), and OpenAI&#39;s rewritten ChatGPT memory began reaching free accounts. The other genuinely-fresh item: Inside Higher Ed and Generation Lab <a href="https://www.insidehighered.com/news/student-success/academic-life/2026/06/11/why-students-arent-all-ai-and-what-they-want-colleges">published a Student Voice survey on 11 June</a> — 1,038 students, 203 institutions. Only 7% call themselves &quot;all in&quot; on AI; 40% worry about dependence; just 10% think their institution is handling it well. Students are more sceptical than the staffroom assumes.</p>
 <h4 class="brief-subhead">What Does It All Mean?</h4>
-<p class="brief-body">The important question is no longer whether students should use AI in the abstract. It is what kind of performance an assignment is supposed to reveal.</p>
-<p class="brief-body">Most school guidance begins as an acceptable-use framework: named platforms, age restrictions, protected data, disclosure requirements, and prohibited behaviour. All of that matters. It does not solve the assessment problem in the Ipsos findings. Teachers lose confidence when a finished product no longer distinguishes independent understanding from skilful use of support or effortless generation.</p>
-<p class="brief-body">Teacher and student adoption are also moving at different speeds. Ipsos found that 62% of teachers use AI for work, but only 23% use it during lessons at least weekly; 69% of teacher users say it improves their productivity. Gallup&#39;s May research found that just 18% had received formal administrative guidance on workplace AI use (<a href="https://news.gallup.com/poll/710534/teachers-receive-no-formal-guidance.aspx">Gallup</a>). AI is becoming ordinary in preparation and administration before schools have settled what its use should mean for learning evidence.</p>
-<p class="brief-body">Research suggests that the better organising unit is the learning task, not the product. Stanford&#39;s 2026 review identified only 20 high-quality causal studies among more than 800 AI-and-K-12 papers. Students often performed better with AI available, but their later unaided results were mixed. Systems designed to offer hints and guide reasoning appeared more promising than general-purpose chatbots that supplied answers (<a href="https://scale.stanford.edu/research-in-action/understanding-evidence-base-ai-k12-education">Stanford SCALE</a>). The OECD similarly recommends developing knowledge and skills without GenAI, with educational GenAI, and then with general-purpose GenAI (<a href="https://www.oecd.org/en/publications/oecd-digital-education-outlook-2026_062a7394-en.html">OECD</a>).</p>
-<p class="brief-body">A workable response is a three-mode contract attached to school tasks:</p>
-<ol class="brief-radar">
-<li><strong>Baseline mode:</strong> AI is absent. The task establishes what a student can retrieve, reason through, explain, or create independently.</li>
-<li><strong>Scaffold mode:</strong> AI may question, hint, translate, model feedback, or identify possible errors, but it may not supply the final reasoning or artefact. The student&#39;s process remains visible.</li>
-<li><strong>Open mode:</strong> AI can be a full collaborator because the learning target includes orchestration, verification, critique, or production with AI. Consequential uses are disclosed and claims remain the student&#39;s responsibility.</li>
-</ol>
-<p class="brief-body">Four small labels can make each mode usable: the evidence being collected, permitted support, required process record, and protected data. That is brief enough to appear on an assignment and stable enough to survive product changes.</p>
-<p class="brief-body">For international schools, this is more durable than beginning with a catalogue of approved prompts. Ed Tech Coaches can help departments interpret the modes for different subjects while keeping a common language across the school. A mathematics proof, a laboratory analysis, a language translation, and a media project need not share identical rules, but each should state whether the school is measuring independent performance, supported learning, or capable AI collaboration.</p>
-<p class="brief-body">AI policy should therefore do more than control access. It should preserve the validity of the inference a teacher makes from student work.</p>
+<p class="brief-body">Here is the question the week quietly posed: <strong>if a school&#39;s whole AI policy rests on disclosure — &quot;tell me which tool you used, and what for&quot; — is that instrument still usable?</strong> Three threads from the dailies converged on the same uncomfortable answer.</p>
+<p class="brief-body">Thread one, Wednesday: Anthropic&#39;s Fable 5 silently routed most biology and chemistry requests to Claude Opus 4.8, so a student often could not know which model answered them (<a href="https://www.anthropic.com/news/claude-fable-5-mythos-5">Anthropic</a>). (The model is now suspended — see above — but the legibility point it illustrated stands, and indeed sharpens.) Thread two, Thursday: OpenAI&#39;s new memory writes a persistent profile the user cannot fully see, that survives a deleted chat, and that the company admits the summary page does not completely list (<a href="https://www.implicator.ai/openai-will-expand-chatgpt-memory-to-free-users-after-5x-compute-cut/">implicator.ai, 4 June</a>). Thread three, all week: the EU AI Act&#39;s chatbot-transparency obligations land 2 August, leaning hard on disclosure as the safeguard.</p>
+<p class="brief-body">Now two voices from outside the headlines. A 2025 paper on the AI Act, <a href="https://arxiv.org/pdf/2503.18387"><em>Manipulation and the Danger of Mirrors</em></a>, argues that a label reading &quot;this is AI&quot; does not neutralise an interface engineered to feel reciprocal — knowing it is a machine does not stop the social response. Disclosure assumes a rational reader the architecture is built to bypass. In the other direction, the detection literature keeps hardening: a <a href="https://www.sciencedirect.com/science/article/abs/pii/S305047592600093X">January 2026 review</a> finds AI detectors generate more false accusations than correct identifications, with documented racial skew against non-native writers. So the school cannot reliably confirm a disclosure that was made, nor catch one that was withheld.</p>
+<p class="brief-body">Put the three threads and the two voices together and the conclusion is not &quot;disclosure is worthless.&quot; It is narrower and more useful: <strong>disclosure is a weak primitive to build on, and a worse one every quarter.</strong> The tools are becoming less legible (silent fallbacks, invisible memory) while the regulators lean harder on legibility, and verification fails in both directions.</p>
+<p class="brief-body">The shutdown adds a second lesson pointing the same way. A school cannot even <em>see</em> which model answered — and now learns it cannot count on the model being there at all. Fable 5 was available to students on Tuesday and gone by government order on Friday, for reasons with nothing to do with the school. That is an argument against building any classroom routine on a single vendor&#39;s top model — the same conclusion the disclosure problem reaches from the other side. Legibility says <em>you cannot fully know what the tool is doing</em>; continuity says <em>you cannot assume the tool will still exist</em>. Both push the weight off the tool and onto the design around it.</p>
+<p class="brief-body">This is where last week&#39;s three-mode contract earns a second look — not as the answer, but with a correction. Baseline / scaffold / open mode works because it shifts the burden off the student&#39;s honesty and onto the <em>task design</em>: a baseline task is built so that AI cannot quietly do the work, regardless of what anyone discloses — or which model is up this week. The honest upgrade is to stop treating &quot;students disclose consequential uses&quot; as the load-bearing control in open mode. Treat disclosure as a teaching habit worth cultivating — and assume it will be partial, sometimes impossible, and never the thing that makes an inference valid. The structural choice carries the weight; the label, and the model, are courtesies.</p>
 <h4 class="brief-subhead">Behind You! Behind You!</h4>
-<p class="brief-body"><strong>Utah has made Gemini a statewide option rather than a single-district experiment.</strong> The Utah State Board of Education says the 2026-27 initiative could reach about 680,000 students and 28,000 educators, with local agencies retaining the choice to participate. It combines managed accounts, an AI-literacy curriculum, teacher training, and assurances that conversations will not be used to train models (<a href="https://schools.utah.gov/publicrelations/_publicrelations_/_2026/USBEAdoptsGeminiEducationPressRelease.pdf">USBE, updated 3 June</a>). It is a substantial implementation case, though its professional learning and evidence model are closely tied to one provider.</p>
-<p class="brief-body"><strong>A new risk review offers caution with its own caution label.</strong> Researchers synthesised 22 empirical K-12 studies and organised reported risks around wellbeing, intellectual agency, and institutional readiness. Their practical recommendations include scaffolded use, process assessment, AI literacy, and teacher development. They also note that the evidence base is small, heterogeneous, geographically concentrated, and not formally quality-appraised (<a href="https://www.sciencedirect.com/science/article/pii/S2666920X26000226">Computers &amp; Education: Artificial Intelligence</a>).</p>
-<p class="brief-body"><strong>AI literacy for young children need not mean independent chatbot use.</strong> In a small design-based study, four pre-K and kindergarten teachers co-designed seven activities around unplugged play, tangible coding, and guided comparison with a social robot (<a href="https://www.sciencedirect.com/science/article/pii/S2666920X26000317">study</a>). The finding should not be inflated, but the design principle travels: learning how AI works can be separated from increasing young children&#39;s exposure to generative systems.</p>
+<p class="brief-body"><strong>The WWDC education story has an IT half the dailies underplayed.</strong> Jamf&#39;s <a href="https://www.jamf.com/blog/wwdc26-key-takeaways-for-education-institutions/">11 June education recap</a> reads the keynote for administrators: expanded Platform SSO and offline authentication, QR-code and guest-access onboarding on iPad, and declarative controls for binaries, app config, and Safari permissions. Its theme — &quot;identity is becoming foundational, management more autonomous&quot; — is the unglamorous plumbing behind every device-mode policy. Worth a read before any Apple-side rollout conversation.</p>
+<p class="brief-body"><strong>Students want course design, not more AI modules.</strong> Buried in that 11 June Student Voice survey: 24% of students said the thing they most want is authentic learning preserved through better assignment design, and 60% want AI offered as personalised support rather than bolted on (<a href="https://www.insidehighered.com/news/student-success/academic-life/2026/06/11/why-students-arent-all-ai-and-what-they-want-colleges">Inside Higher Ed</a>). It is higher-ed and self-report, but it points the same way as the teacher data: the demand is for better tasks, not louder tools.</p>
 <h4 class="brief-subhead">The Riff Returns But Slower</h4>
 <ul class="brief-radar">
-<li><strong>2026-06-08 to 2026-06-12</strong> - Apple WWDC. The education-relevant details will be device management, account and age controls, privacy, and what &quot;on-device&quot; means in managed fleets, rather than the headline model demonstrations (<a href="https://www.apple.com/newsroom/2026/05/apple-kicks-off-worldwide-developers-conference-on-june-8/">Apple</a>).</li>
-<li><strong>2026-06-10</strong> - Final approval hearing for the Naviance/PowerSchool privacy settlement, a useful reminder that familiar education platforms can carry durable data liability (<a href="https://www.classaction.org/news/17.25m-powerschool-settlement-resolves-class-action-over-alleged-interception-of-confidential-student-communications">case summary</a>).</li>
-<li><strong>2026-06-28 to 2026-07-01</strong> - ISTELive/ASCD. The useful reading will come after the conference, when session materials reveal what sits behind claims about outcomes-based procurement, AI-ready graduates, and AI-supported project learning (<a href="https://conference.iste.org/2026/about/faq.php">conference FAQ</a>).</li>
-<li><strong>Coming months</strong> - Watch Utah&#39;s district uptake, the content of its teacher training, and whether local agencies publish adoption criteria or measures of learning impact.</li>
-<li><strong>Slow burn</strong> - Boston University&#39;s <a href="https://www.bu.edu/wheelock/news/articles/2026/new-ai-ethics-index-launches/">AI Ethics Index</a>, a verifiable final <a href="https://ailiteracyframework.org/">AILit framework</a>, and international or custom standards support in Google Classroom matter more to school implementation than another general model ranking.</li>
+<li><strong>Live — Fable 5 / Mythos 5 restoration.</strong> When access returns is the open question; as of this weekend both models remain fully suspended, with no court order restoring them, while Anthropic disputes the directive and says it is working to restore access (<a href="https://www.anthropic.com/news/fable-mythos-access">Anthropic, 12 June</a>). The wider Anthropic–government relationship is already adversarial — the DOJ is contesting a separate, earlier order tied to the winter federal-agency ban — so expect this fought, not quietly resolved. The durable signal is the precedent: a frontier model can now be export-controlled out of every classroom at once.</li>
+<li><strong>2026-06-28 to 07-01</strong> — ISTELive/ASCD. As ever, the value arrives after the stagecraft: released session resources and case studies, not keynote adjectives (<a href="https://conference.iste.org/2026/about/faq.php">ISTE</a>).</li>
+<li><strong>2026-06-30</strong> — Colorado&#39;s AI Act takes effect, covering high-risk systems including those affecting educational access — the first concrete compliance date in this wave.</li>
+<li><strong>2026-08-02</strong> — EU AI Act transparency and high-risk education obligations. An Omnibus delay has been discussed but is not law until published; until then the date stands for anyone selling grading or proctoring AI into the EU.</li>
+<li><strong>Slow burn</strong> — Utah&#39;s actual district uptake of Gemini for Education; whether consumer-tier memory controls get more auditable under August&#39;s regulatory pressure; the steadily growing — but still thin — base of rigorous causal evidence behind all of it.</li>
 </ul>
 <h4 class="brief-subhead">Sceptic&#39;s Corner</h4>
-<p class="brief-body">This week&#39;s claim to press is <strong>&quot;AI is destroying critical thinking.&quot;</strong></p>
-<p class="brief-body">Teachers&#39; concerns are operational evidence, even when they are not causal evidence. The Ipsos results describe weakened confidence in authorship, assessment, and classroom trust. High-school teachers were more negative than elementary teachers. Treating that as simple technophobia would be unserious.</p>
-<p class="brief-body">It would be equally unserious to turn a perception poll into proof of cognitive decline. The sample was 545 US teachers and the overall margin of sampling error was plus or minus five percentage points. Stanford&#39;s review says the causal literature is still sparse. A recent meta-analysis of 34 K-12 studies found a moderate positive average effect for AI agents, but higher-order-thinking results were not statistically significant, upper-secondary effects were negligible, and almost half of the observed effects were negligible or negative (<a href="https://www.sciencedirect.com/science/article/pii/S2451958826000473">meta-analysis</a>).</p>
-<p class="brief-body">The contradiction is the finding. &quot;AI&quot; is not a coherent classroom intervention. A hinting tutor, a general answer generator, a teacher planning assistant, and a relationship-simulating bot have different designs, users, and risks.</p>
-<p class="brief-body">The sensible conclusion is precise: AI can improve performance while support is present, but that does not establish durable independent learning. A better AI-assisted answer demonstrates what a learner and a system produced together. It does not, by itself, demonstrate what the learner can now do.</p>
+<p class="brief-body">The hype to squeeze this week is the quiet assumption underneath every &quot;AI governance is maturing&quot; deck: that <strong>transparency is the mature control</strong> — that once a system tells you it is AI, once memory has a settings page, once disclosure is required by law, the responsible-use problem is largely architected.</p>
+<p class="brief-body">The week argued the opposite, gently and from multiple directions. The page that lists your ChatGPT memories is admitted to be incomplete. The model on the label is not always the model that answered. The detector that would verify a student&#39;s disclosure is, per the January 2026 review, <a href="https://www.sciencedirect.com/science/article/abs/pii/S305047592600093X">more likely to be wrong than right</a> and biased against the students least able to defend themselves. And the regulatory instrument arriving in August leans on exactly the disclosure mechanism a <a href="https://arxiv.org/pdf/2503.18387">2025 AI Act paper</a> says users&#39; own psychology is built to ignore.</p>
+<p class="brief-body">And the week&#39;s own headline made the point sharper: the most transparent thing imaginable — a model with a card and published safety warnings — was pulled offline <em>because</em> of a published safety finding. The lesson from the shutdown is not transparency. It is continuity: a tool you can fully inspect is no use to a class on the morning a government turns it off.</p>
+<p class="brief-body">None of that is an argument for cynicism, and certainly not for AI-detector theatre — the detectors are the worst offender here, not the cure. It is an argument for putting the weight somewhere it can bear load. A disclosure norm is a fine thing to teach and a poor thing to enforce; a single best model is a fine thing to use and a poor thing to depend on. The validity of what a student hands in should rest on how the task was built, what evidence of thinking it requires, and what data it keeps off the open web — none of which depend on a label being accurate, or a model still being switched on. Transparency was never going to be the safeguard, and this week it looked less like one than usual.</p>
     </article>
   </section>
   <!-- ===== Recent signals ===== -->
@@ -491,13 +538,13 @@
     </article>
 <article class="archive-card">
       <header class="archive-card-head">
-        <h3 class="archive-date">5 June 2026 · <em>AI guidance is becoming a training system, not just a policy memo. The Philippines Department of Education is…</em></h3>
+        <h3 class="archive-date">7 June 2026 · <em>Week ending Sunday, 7 June 2026</em></h3>
       </header>
       <div class="archive-ledes">
-        <span class="archive-label">brief</span>
-        <span class="archive-lede-text">AI guidance is becoming a training system, not just a policy memo. The Philippines Department of Education is expanding its Google for Education partnership into Project S.I.N.A.G., a no-cost Google and Gemini AI certif…</span>
+        <span class="archive-label">weekly</span>
+        <span class="archive-lede-text">This week's product announcements kept turning into questions about institutional judgement. Google linked Classroom assignments and analytics to learning goals, extended Gemini and NotebookLM across LMS and Workspace w…</span>
       </div>
-      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-06-05-0731-brief.md">Open source markdown →</a></p>
+      <p class="brief-meta" style="margin-bottom:0;"><a href="view.html?file=briefs%2F2026-06-07-weekly.md">Open source markdown →</a></p>
     </article>
     <article class="card">
       <p style="margin:0;"><strong>Archive:</strong> <a href="dls-digest-archive.html">Browse all public briefings and deep dives →</a></p>
