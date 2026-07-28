@@ -292,6 +292,19 @@
     border-radius: 0 8px 8px 0;
     color: var(--muted);
   }
+  /* Separator between a document and its `also` companion (brief → actions). */
+  .doc-join {
+    margin: 3rem 0 2.25rem;
+    border-top: 2px solid var(--accent);
+    opacity: 0.5;
+  }
+  .doc-join-missing {
+    margin-top: 2rem;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
   .markdown-body blockquote p { margin: 0.4rem 0; }
   .markdown-body code {
     font-family: var(--mono);
@@ -455,6 +468,7 @@
 
     var dirHandle = null;
     var filePath = '';
+    var alsoPath = '';
 
     function setStatus(state, text) {
       status.dataset.state = state;
@@ -568,7 +582,7 @@
       return text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n+/, '');
     }
 
-    function render(text, path) {
+    function toHtml(text) {
       text = stripFrontmatter(text);
       if (window.marked && window.marked.setOptions) {
         window.marked.setOptions({ gfm: true, breaks: false });
@@ -579,8 +593,47 @@
       if (window.DOMPurify) {
         html = window.DOMPurify.sanitize(html, { ADD_ATTR: ['target'] });
       }
-      content.innerHTML = html;
+      return html;
+    }
+
+    function render(text, path) {
+      content.innerHTML = toHtml(text);
       rewriteLinks(content, path);
+    }
+
+    // Append a second document below the first — the `also` param. Lets one link
+    // open a document and its companion file in order, rather than two clicks.
+    // Links are rewritten against the SECOND file's own path, not the first, or
+    // relative links inside it would resolve wrongly.
+    function appendDoc(text, path) {
+      var join = document.createElement('div');
+      join.className = 'doc-join';
+      content.appendChild(join);
+      var wrap = document.createElement('div');
+      wrap.innerHTML = toHtml(text);
+      content.appendChild(wrap);
+      rewriteLinks(wrap, path);
+    }
+
+    // Non-fatal by design: the primary document is already on screen, so a
+    // missing companion degrades to a note rather than blanking the page.
+    function loadAlso() {
+      if (!alsoPath) return Promise.resolve();
+      var isPublicMode = (window.location.protocol !== 'file:');
+      var p = isPublicMode
+        ? fetch(alsoPath).then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + r.statusText);
+            return r.text();
+          })
+        : traverseToFile(dirHandle, alsoPath).then(readFileHandle);
+      return p.then(function (text) {
+        appendDoc(text, alsoPath);
+      }).catch(function (e) {
+        var note = document.createElement('p');
+        note.className = 'doc-join-missing';
+        note.textContent = 'Companion file not loaded (' + alsoPath + '): ' + (e.message || e);
+        content.appendChild(note);
+      });
     }
 
     function showConnectPrompt() {
@@ -599,6 +652,8 @@
         return r.text();
       }).then(function (text) {
         render(text, filePath);
+        return loadAlso();
+      }).then(function () {
         setStatus('loaded', 'Loaded');
         var nameOnly = filePath.split('/').pop();
         document.title = nameOnly + ' — Viewer';
@@ -611,7 +666,10 @@
     function init() {
       var url = new URL(window.location.href);
       filePath = url.searchParams.get('file') || '';
-      fileName.textContent = filePath || '(no file specified)';
+      alsoPath = url.searchParams.get('also') || '';
+      fileName.textContent = filePath
+        ? (alsoPath ? filePath + '  +  ' + alsoPath.split('/').pop() : filePath)
+        : '(no file specified)';
 
       if (!filePath) {
         setStatus('error', 'No file');
@@ -672,6 +730,9 @@
         .then(readFileHandle)
         .then(function (text) {
           render(text, filePath);
+          return loadAlso();
+        })
+        .then(function () {
           setStatus('loaded', 'Loaded');
           // Update document title to file name
           var nameOnly = filePath.split('/').pop();
