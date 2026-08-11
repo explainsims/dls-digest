@@ -582,8 +582,15 @@
       return text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n+/, '');
     }
 
+    function stripReaderMetadata(text) {
+      // Filing details belong in the source record, not in the reader-visible copy.
+      return text
+        .replace(/^_[^_\r\n]*Filed[^_\r\n]*_\s*$/gmi, '')
+        .replace(/\n{3,}/g, '\n\n');
+    }
+
     function toHtml(text) {
-      text = stripFrontmatter(text);
+      text = stripReaderMetadata(stripFrontmatter(text));
       if (window.marked && window.marked.setOptions) {
         window.marked.setOptions({ gfm: true, breaks: false });
       }
