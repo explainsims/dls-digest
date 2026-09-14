@@ -628,13 +628,10 @@
       if (!alsoPath) return Promise.resolve();
       var isPublicMode = (window.location.protocol !== 'file:');
       var p = isPublicMode
-        ? fetch(alsoPath).then(function (r) {
-            if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + r.statusText);
-            return r.text();
-          })
-        : traverseToFile(dirHandle, alsoPath).then(readFileHandle);
-      return p.then(function (text) {
-        appendDoc(text, alsoPath);
+        ? fetchWithFallback(alsoPath)
+        : traverseToFile(dirHandle, alsoPath).then(readFileHandle).then(function (text) { return { text: text, path: alsoPath }; });
+      return p.then(function (res) {
+        appendDoc(res.text, res.path);
       }).catch(function (e) {
         var note = document.createElement('p');
         note.className = 'doc-join-missing';
@@ -650,20 +647,40 @@
       content.innerHTML = '';
     }
 
+
+    function localFallbackFor() { return null; }
+
+
+    function fetchText(p) {
+      return fetch(p, { cache: 'no-store' }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + r.statusText);
+        return r.text();
+      });
+    }
+
+    // Fetch p; if it fails and a local fallback exists, try that. Resolves to
+    // { text, path } so the caller knows which file actually loaded.
+    function fetchWithFallback(p) {
+      return fetchText(p).then(function (text) { return { text: text, path: p }; })
+        .catch(function (e) {
+          var alt = localFallbackFor(p);
+          if (!alt) throw e;
+          return fetchText(alt).then(function (text) { return { text: text, path: alt }; });
+        });
+    }
+
     function loadFileViaFetch() {
       hideError();
       setStatus('connecting', 'Loading…');
+      var loadedPath = filePath;
       // Same-origin fetch — works on http(s) where FSA isn't applicable.
-      return fetch(filePath).then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + r.statusText);
-        return r.text();
-      }).then(function (text) {
-        render(text, filePath);
+      return fetchWithFallback(filePath).then(function (res) {
+        loadedPath = res.path;
+        render(res.text, res.path);
         return loadAlso();
       }).then(function () {
-        setStatus('loaded', 'Loaded');
-        var nameOnly = filePath.split('/').pop();
-        document.title = nameOnly + ' — Viewer';
+        setStatus('loaded', loadedPath === filePath ? 'Loaded' : 'Loaded (local source)');
+        document.title = filePath.split('/').pop() + ' — Viewer';
       }).catch(function (e) {
         setStatus('error', 'Error');
         showError('Couldn\'t fetch ' + filePath + ': ' + (e.message || e));
