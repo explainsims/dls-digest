@@ -314,6 +314,9 @@
     border-radius: 4px;
     color: var(--accent);
     font-weight: 500;
+    /* A long unbroken string (a URI like spiffe://TRUST_DOMAIN/…) must wrap,
+       not push the page sideways on a phone (2026-10-09). */
+    overflow-wrap: anywhere;
   }
   .markdown-body pre {
     background: var(--accent-soft);
@@ -328,6 +331,7 @@
   }
   .markdown-body pre code {
     background: transparent;
+    overflow-wrap: normal;
     padding: 0;
     color: var(--text);
     font-weight: 400;
